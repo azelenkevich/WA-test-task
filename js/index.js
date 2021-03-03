@@ -24,10 +24,10 @@ class List{
     }
 
     renderTags(){
-        this.tagsList.forEach((item) => {
-            let tag = new Tag(item);
+        this.tagsList.forEach((value) => {
+            let tag = new Tag(value);
             this.tagsContainer.append(tag.createTag());
-        })
+        });
     }
 
     setToLocalstorage(){
@@ -48,7 +48,7 @@ class List{
         if(target.classList.contains('tags__remove') && !this.readOnly){
             let li = target.parentElement;
             let index = [...li.parentElement.children].indexOf(li);
-            this.tagsList.splice(index, 1)
+            this.tagsList.splice(index, 1);
             this.setToLocalstorage();
             li.remove();
         }
@@ -56,18 +56,21 @@ class List{
 
     toggleReadOnly(){
         this.readOnly = !this.readOnly;
-        this.readonlyIndicator.innerText = this.readOnly ? 'On' : 'Off'
+        this.readonlyIndicator.innerText = this.readOnly ? 'On' : 'Off';
     }
 
-    get allTags(){
+    getTags(){
         return this.tagsList;
     }
 
-    set newTags(array){
-        this.tagsList = array;
-        this.setToLocalstorage();
-    }
-    
+    setTags(array){
+        if(Array.isArray(array)){
+            this.tagsList = array;
+            this.setToLocalstorage();
+        } else {
+            console.log('Not array');
+        }
+    }  
 }
 
 const input = document.querySelector('.add__input'),
@@ -81,12 +84,13 @@ const list = new List(input, tagsContainer, readonlyIndicator);
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     list.addTag();
-})
+});
 
 tagsContainer.addEventListener('click', e => {
     list.removeTag(e.target);
-})
+});
 
 readOnlyBtn.addEventListener('click', () => {
     list.toggleReadOnly();
-})
+});
+
