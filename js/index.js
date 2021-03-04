@@ -17,7 +17,7 @@ class List{
     constructor(tagsInput, tagsContainer, readonlyIndicator){
         this.tagsInput = tagsInput;
         this.tagsContainer = tagsContainer;
-        this.tagsList = JSON.parse(localStorage.getItem("taskList")) || [];
+        this.tagsList = JSON.parse(localStorage.getItem("tagsList")) || [];
         this.renderTags();
         this.readOnly = false;
         this.readonlyIndicator = readonlyIndicator;
@@ -31,7 +31,7 @@ class List{
     }
 
     setToLocalstorage(){
-        localStorage.setItem('taskList', JSON.stringify(this.tagsList));
+        localStorage.setItem('tagsList', JSON.stringify(this.tagsList));
     }
 
     addTag(){
@@ -76,7 +76,7 @@ class List{
 const input = document.querySelector('.add__input'),
       addBtn = document.querySelector('.add__button'),
       tagsContainer = document.querySelector('.tags'),
-      readOnlyBtn = document.querySelector('.add__readonly'),
+      readOnlyBtn = document.querySelector('.mode__checkbox'),
       readonlyIndicator = document.querySelector('.mode__indicator');
 
 const list = new List(input, tagsContainer, readonlyIndicator);
@@ -93,4 +93,3 @@ tagsContainer.addEventListener('click', e => {
 readOnlyBtn.addEventListener('click', () => {
     list.toggleReadOnly();
 });
-
