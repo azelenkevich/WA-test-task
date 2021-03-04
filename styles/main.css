@@ -2,27 +2,19 @@
     box-sizing: border-box;
 }
 
-.container{
+.box{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 400px;
     padding: 20px;
-    background-color: aquamarine;
+    background-color: #AFDDE4;
     border-radius: 10px;
 }
 
-.btn{
-    background-color: #fff;
-    height: 25px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .add__input{
-    outline: none;
-    border-radius: 5px;
-    height: 25px;
+    width: 75%;
 }
 
 .tags{
